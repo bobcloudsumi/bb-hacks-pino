@@ -234,7 +234,7 @@ bool ComputePipeline::BindResources(VideoCore::BufferCache& buffer_cache,
                     LOG_WARNING(Render_Vulkan, "Unexpected metadata read by a CS shader (buffer)");
                 }
             }
-            if (desc.is_written && info->pgm_hash != 0xfefebf9f && info->pgm_hash != 0x3d5ebf4e) {
+            if (desc.is_written && info->pgm_hash != 0xfefebf9f /*Adjo_video_player_fix && info->pgm_hash != 0x3d5ebf4e */) {
                 texture_cache.InvalidateMemory(address, size);
             }
             const u32 alignment = instance.TexelBufferMinAlignment();
