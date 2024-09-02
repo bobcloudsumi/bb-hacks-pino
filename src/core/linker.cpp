@@ -85,8 +85,8 @@ void Linker::Execute() {
 
     // Init primary thread.
     Common::SetCurrentThreadName("GAME_MainThread");
-    Libraries::Kernel::pthreadInitSelfMainThread();
     InitializeThreadPatchStack();
+    Libraries::Kernel::pthreadInitSelfMainThread();
     InitTlsForThread(true);
 
     // Start shared library modules
@@ -107,7 +107,7 @@ void Linker::Execute() {
         }
     }
 
-    CleanupThreadPatchStack();
+    SetTcbBase(nullptr);
 }
 
 s32 Linker::LoadModule(const std::filesystem::path& elf_name, bool is_dynamic) {
